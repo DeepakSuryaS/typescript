@@ -15,3 +15,7 @@ export type AddNewItemProps = {
   toggleButtonText: string;
   dark?: boolean;
 }
+
+export type NewItemFormProps = {
+  onAdd(text: string): void;
+}
