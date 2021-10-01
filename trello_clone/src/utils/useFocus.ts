@@ -8,6 +8,6 @@ const useFocus = () => {
   }, []);
 
   return ref;
-}
+};
 
 export default useFocus;

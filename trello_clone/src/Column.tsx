@@ -11,12 +11,16 @@ const Column = ({ title, index }: ColumnProps) => {
   return (
     <ColumnContainer>
       <ColumnTitle>{title}</ColumnTitle>
-        {state?.lists[index]?.tasks?.map(task => (
-          <Card text={task?.text} key={task?.id} />
-        ))}
-      <AddNewItem toggleButtonText="+ Add another task" onAdd={text => console.log('Adding:', text)} dark />
+      {state?.lists[index]?.tasks?.map(task => (
+        <Card text={task?.text} key={task?.id} />
+      ))}
+      <AddNewItem
+        toggleButtonText='+ Add another task'
+        onAdd={text => console.log('Adding:', text)}
+        dark
+      />
     </ColumnContainer>
-  )
-}
+  );
+};
 
 export default Column;

@@ -15,14 +15,14 @@ const AddNewItem = (props: AddNewItemProps) => {
           setShowForm(false);
         }}
       />
-    )
+    );
   }
 
   return (
     <AddItemButton dark={dark} onClick={() => setShowForm(true)}>
       {toggleButtonText}
     </AddItemButton>
-  )
-}
+  );
+};
 
 export default AddNewItem;

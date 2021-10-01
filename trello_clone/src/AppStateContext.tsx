@@ -11,6 +11,10 @@ type List = {
   tasks: Task[];
 };
 
+type Action =
+  | { type: 'ADD_LIST'; payload: string }
+  | { type: 'ADD_TASK'; payload: { text: string; listId: string } };
+
 export type AppState = {
   lists: List[];
 };
@@ -24,31 +28,27 @@ const appData: AppState = {
     {
       id: '0',
       text: 'To do',
-      tasks: [{ id: 'c0', text: 'Generate app scaffold' }]
+      tasks: [{ id: 'c0', text: 'Generate app scaffold' }],
     },
     {
       id: '1',
       text: 'In Progress',
-      tasks: [{ id: 'c2', text: 'Learn TypeScript' }]
+      tasks: [{ id: 'c2', text: 'Learn TypeScript' }],
     },
     {
       id: '2',
       text: 'Done',
-      tasks: [{ id: 'c3', text: 'Begin to use static typing' }]
+      tasks: [{ id: 'c3', text: 'Begin to use static typing' }],
     },
-  ]
+  ],
 };
 
 const AppStateContext = createContext<AppStateContextProps>({} as AppStateContextProps);
 
 export const AppStateProvider = ({ children }: React.PropsWithChildren<{}>) => {
-  return (
-    <AppStateContext.Provider value={{ state: appData }}>
-      {children}
-    </AppStateContext.Provider>
-  );
+  return <AppStateContext.Provider value={{ state: appData }}>{children}</AppStateContext.Provider>;
 };
 
 export const useAppState = () => {
   return useContext(AppStateContext);
-}
+};

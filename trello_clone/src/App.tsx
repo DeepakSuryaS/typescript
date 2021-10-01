@@ -12,9 +12,12 @@ const App: React.FC = () => {
       {state?.lists?.map((list, i) => (
         <Column title={list?.text} key={list?.id} index={i} />
       ))}
-      <AddNewItem toggleButtonText="+ Add another list" onAdd={text => console.log('Adding:', text)} />
+      <AddNewItem
+        toggleButtonText='+ Add another list'
+        onAdd={text => console.log('Adding:', text)}
+      />
     </AppContainer>
   );
-}
+};
 
 export default App;
