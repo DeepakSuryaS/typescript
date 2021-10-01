@@ -1,5 +1,6 @@
 export type ColumnProps = {
   title: string;
+  index: number;
 }
 
 export type CardProps = {
