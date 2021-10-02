@@ -5,16 +5,16 @@ import { useAppState } from './AppStateContext';
 import { AppContainer } from './styles';
 
 const App: React.FC = () => {
-  const { state } = useAppState();
+  const { state, dispatch } = useAppState();
 
   return (
     <AppContainer>
       {state?.lists?.map((list, i) => (
-        <Column title={list?.text} key={list?.id} index={i} />
+        <Column id={list.id} title={list?.text} key={list?.id} index={i} />
       ))}
       <AddNewItem
         toggleButtonText='+ Add another list'
-        onAdd={text => console.log('Adding:', text)}
+        onAdd={text => dispatch({ type: 'ADD_LIST', payload: text })}
       />
     </AppContainer>
   );

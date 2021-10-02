@@ -1,10 +1,12 @@
 export type ColumnProps = {
   title: string;
   index: number;
+  id: string;
 };
 
 export type CardProps = {
   text: string;
+  index: number;
 };
 
 export type AddItemButtonProps = {
