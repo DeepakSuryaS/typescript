@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useReducer } from 'react';
 import { nanoid } from 'nanoid';
-import { findItemIndexById, overrideItemAtIndex } from './utils/arrayUtils';
+import { findItemIndexById, overrideItemAtIndex, moveItem } from './utils/arrayUtils';
 
 type Task = {
   id: string;
@@ -15,7 +15,8 @@ type List = {
 
 type Action =
   | { type: 'ADD_LIST'; payload: string }
-  | { type: 'ADD_TASK'; payload: { text: string; listId: string } };
+  | { type: 'ADD_TASK'; payload: { text: string; listId: string } }
+  | { type: 'MOVE_LIST'; payload: { dragIndex: number; hoverIndex: number } };
 
 export type AppState = {
   lists: List[];
@@ -77,6 +78,13 @@ const appStateReducer = (state: AppState, action: Action): AppState => {
       return {
         ...state,
         lists: overrideItemAtIndex(state.lists, updatedTargetList, targetListIndex),
+      };
+    }
+    case 'MOVE_LIST': {
+      const { dragIndex, hoverIndex } = action.payload;
+      return {
+        ...state,
+        lists: moveItem(state.lists, dragIndex, hoverIndex),
       };
     }
     default: {
