@@ -1,7 +1,7 @@
 export type ColumnDragItem = {
   index: number;
   id: string;
-  text: string;
+  title: string;
   type: 'COLUMN';
 };
 
