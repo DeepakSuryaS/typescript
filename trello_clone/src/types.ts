@@ -1,7 +1,8 @@
 export type ColumnProps = {
-  title: string;
+  text: string;
   index: number;
   id: string;
+  isPreview?: boolean;
 };
 
 export type CardProps = {
@@ -25,4 +26,5 @@ export type NewItemFormProps = {
 
 export type DragPreviewContainerProps = {
   isHidden?: boolean;
+  isPreview?: boolean;
 };

@@ -12,6 +12,7 @@ export const AppContainer = styled.div`
 `;
 
 export const DragPreviewContainer = styled.div<DragPreviewContainerProps>`
+  transform: ${({ isPreview }) => (isPreview ? 'rotate(5deg)' : undefined)}
   opacity: ${({ isHidden }) => (isHidden ? 0.3 : 1)};
 `;
 
@@ -82,4 +83,14 @@ export const NewItemInput = styled.input`
   margin-bottom: 0.5rem;
   padding: 0.5rem 1rem;
   box-shadow: #091e4240 0px 1px 0px 0px;
+`;
+
+export const CustomDragLayerContainer = styled.div`
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  position: fixed;
+  z-index: 100;
 `;
