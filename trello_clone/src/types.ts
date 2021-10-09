@@ -22,3 +22,7 @@ export type AddNewItemProps = {
 export type NewItemFormProps = {
   onAdd(text: string): void;
 };
+
+export type DragPreviewContainerProps = {
+  isHidden?: boolean;
+};
