@@ -12,8 +12,8 @@ export const AppContainer = styled.div`
 `;
 
 export const DragPreviewContainer = styled.div<DragPreviewContainerProps>`
-  transform: ${({ isPreview }) => (isPreview ? 'rotate(5deg)' : undefined)}
-  opacity: ${({ isHidden }) => (isHidden ? 0.3 : 1)};
+  transform: ${({ isPreview }) => (isPreview ? 'rotate(5deg)' : undefined)};
+  opacity: ${({ isHidden }) => (isHidden ? 0 : 1)};
 `;
 
 export const ColumnContainer = styled(DragPreviewContainer)`

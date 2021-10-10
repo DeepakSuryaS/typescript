@@ -2,6 +2,7 @@ import React from 'react';
 import Column from './Column';
 import AddNewItem from './AddNewItem';
 import { useAppState } from './AppStateContext';
+import CustomDragLayer from './CustomDragLayer';
 import { AppContainer } from './styles';
 
 const App: React.FC = () => {
@@ -9,6 +10,7 @@ const App: React.FC = () => {
 
   return (
     <AppContainer>
+      <CustomDragLayer />
       {state?.lists?.map((list, i) => (
         <Column id={list.id} text={list?.text} key={list?.id} index={i} />
       ))}

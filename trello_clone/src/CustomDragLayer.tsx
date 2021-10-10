@@ -4,12 +4,19 @@ import Column from './Column';
 import { CustomDragLayerContainer } from './styles';
 import { DragItem } from './DragItem';
 
+const getItemStyles = (currentOffset: XYCoord | null): React.CSSProperties => {
+  if (!currentOffset) return { display: 'none' };
+
+  const { x, y } = currentOffset;
+  const transform = `translate(${x}px, ${y}px)`;
+  return {
+    transform,
+    WebkitTransform: transform,
+  };
+};
+
 const CustomDragLayer = () => {
-  const {
-    isDragging,
-    currentOffset,
-    item: { id, text, index },
-  } = useDragLayer(monitor => ({
+  const { isDragging, currentOffset, item } = useDragLayer(monitor => ({
     isDragging: monitor.isDragging(),
     currentOffset: monitor.getClientOffset(),
     item: monitor.getItem() as DragItem,
@@ -17,7 +24,9 @@ const CustomDragLayer = () => {
 
   return isDragging ? (
     <CustomDragLayerContainer>
-      <Column id={id} text={text} index={index} isPreview={true} />
+      <div style={getItemStyles(currentOffset)}>
+        <Column id={item?.id} text={item?.text} index={item?.index} isPreview={true} />
+      </div>
     </CustomDragLayerContainer>
   ) : null;
 };
