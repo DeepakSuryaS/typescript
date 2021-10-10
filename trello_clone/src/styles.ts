@@ -26,7 +26,7 @@ export const ColumnContainer = styled(DragPreviewContainer)`
   background: #ebecf0;
 `;
 
-export const CardContainer = styled.div`
+export const CardContainer = styled(DragPreviewContainer)`
   cursor: pointer;
   background: #fff;
   margin-bottom: 0.5rem;

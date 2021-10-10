@@ -8,6 +8,9 @@ export type ColumnProps = {
 export type CardProps = {
   text: string;
   index: number;
+  id: string;
+  columnId: string;
+  isPreview?: boolean;
 };
 
 export type AddItemButtonProps = {
