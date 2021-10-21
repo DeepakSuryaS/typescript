@@ -1,3 +1,4 @@
+import React from 'react';
 import { AppState } from './AppStateContext';
 
 export type ColumnProps = {
@@ -39,3 +40,8 @@ export type InjectedProps = {
 };
 
 export type PropsWithoutInjected<TBaseProps> = Omit<TBaseProps, keyof InjectedProps>;
+
+export type AppStateProviderProps = {
+  children: React.ReactNode;
+  initialState: AppState;
+};

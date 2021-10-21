@@ -9,6 +9,8 @@ import {
 } from './utils/arrayUtils';
 import { DragItem } from './DragItem';
 import { save } from './api';
+import withInitialState from './withInitialState';
+import { AppStateProviderProps } from './types';
 
 type Task = {
   id: string;
@@ -146,17 +148,19 @@ const appStateReducer = (state: AppState, action: Action): AppState => {
 
 const AppStateContext = createContext<AppStateContextProps>({} as AppStateContextProps);
 
-export const AppStateProvider = ({ children }: React.PropsWithChildren<{}>) => {
-  const [state, dispatch] = useReducer(appStateReducer, appData);
+export const AppStateProvider = withInitialState<AppStateProviderProps>(
+  ({ children, initialState }) => {
+    const [state, dispatch] = useReducer(appStateReducer, initialState);
 
-  useEffect(() => {
-    save(state);
-  }, [state]);
+    useEffect(() => {
+      save(state);
+    }, [state]);
 
-  return (
-    <AppStateContext.Provider value={{ state, dispatch }}>{children}</AppStateContext.Provider>
-  );
-};
+    return (
+      <AppStateContext.Provider value={{ state, dispatch }}>{children}</AppStateContext.Provider>
+    );
+  }
+);
 
 export const useAppState = () => {
   return useContext(AppStateContext);
