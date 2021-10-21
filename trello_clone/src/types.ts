@@ -1,3 +1,5 @@
+import { AppState } from './AppStateContext';
+
 export type ColumnProps = {
   text: string;
   index: number;
@@ -31,3 +33,9 @@ export type DragPreviewContainerProps = {
   isHidden?: boolean;
   isPreview?: boolean;
 };
+
+export type InjectedProps = {
+  initialState: AppState;
+};
+
+export type PropsWithoutInjected<TBaseProps> = Omit<TBaseProps, keyof InjectedProps>;
