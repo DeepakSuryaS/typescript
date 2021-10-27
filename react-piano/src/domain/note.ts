@@ -12,3 +12,11 @@ export type Note = {
   index: PitchIndex;
   octave: OctaveIndex;
 };
+
+const C1_MIDI_NUMBER = 24;
+const C4_MIDI_NUMBER = 60;
+const B5_MIDI_NUMBER = 83;
+
+export const LOWER_NOTE = C4_MIDI_NUMBER;
+export const HIGHER_NOTE = B5_MIDI_NUMBER;
+export const SEMITONES_IN_OCTAVE = 12;
