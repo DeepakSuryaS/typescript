@@ -6,3 +6,5 @@ function useAudioContext(): Optional<AudioContextType> {
   const AudioCtx = useRef(accessContext());
   return AudioCtx.current;
 }
+
+export default useAudioContext;

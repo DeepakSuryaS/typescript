@@ -1,17 +1,25 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, ReactEventHandler } from "react";
 import { NoteType } from "../../domain/note";
 
 type KeyProps = {
   type: NoteType;
   label: string;
   disabled?: boolean;
+  onUp: ReactEventHandler<HTMLButtonElement>;
+  onDown: ReactEventHandler<HTMLButtonElement>;
 };
 
 const Key: FunctionComponent<KeyProps> = (props) => {
-  const { type, label, ...rest } = props;
+  const { type, label, onDown, onUp, ...rest } = props;
 
   return (
-    <button className={clsx(styles.key, styles[type])} type="button" {...rest}>
+    <button
+      className={clsx(styles.key, styles[type])}
+      type="button"
+      onMouseDown={onDown}
+      onMouseUp={onUp}
+      {...rest}
+    >
       {label}
     </button>
   );
