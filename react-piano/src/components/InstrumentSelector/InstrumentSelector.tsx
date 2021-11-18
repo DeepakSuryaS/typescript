@@ -11,7 +11,7 @@ const InstrumentSelector = () => {
 
   return (
     <select
-      className={styles.instrument}
+      className={styles.instruments}
       onChange={updateValue}
       value={instrument}
     >

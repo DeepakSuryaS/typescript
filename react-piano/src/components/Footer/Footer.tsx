@@ -5,8 +5,7 @@ export const Footer = () => {
 
   return (
     <footer className={styles.footer}>
-      <p>Some company</p>
-      <br />
+      <p>God Sutta Kuruvi company</p>
       <p>{currYear}</p>
     </footer>
   );
