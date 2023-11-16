@@ -1,6 +1,6 @@
 import { type FC, type PropsWithChildren, type ReactNode } from "react";
 
-// the "type" keyword before the imported items serves as a decorator for the bundlers
+// the "type" keyword before the imported items serves as a decorator for the build tools
 // it says that the imported items are just type definitions and that the browser won't be able to do anything with it
 // so it can be safely ignored while bundling
 
