@@ -13,12 +13,12 @@ export type CourseGoalType = {
 export default function App() {
   const [goals, setGoals] = useState<CourseGoalType[]>([]);
 
-  const handleAddGoal = () => {
+  const handleAddGoal = (goal: string, summary: string) => {
     setGoals((prevGoals) => {
       const newGoal: CourseGoalType = {
         id: Math.random(),
-        title: "Learn React + TS",
-        description: "From the ground up!",
+        title: goal,
+        description: summary,
       };
 
       return [...prevGoals, newGoal];
@@ -34,7 +34,7 @@ export default function App() {
       <Header image={{ src: goalImg, alt: "A list of goals" }}>
         <h1>Your course goals</h1>
       </Header>
-      <NewGoal />
+      <NewGoal onAddGoal={handleAddGoal} />
       <CourseGoalList goals={goals} onDelete={handleDeleteGoal} />
     </main>
   );
