@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import Input from "./components/Input";
 import Button from "./components/Button";
+import Form from "./components/Form";
 
 function App() {
   const inputRef = useRef<HTMLInputElement>(null);
@@ -24,9 +25,21 @@ function App() {
   //   </main>
   // );
 
+  // return (
+  //   <main>
+  //     <Input type="text" ref={inputRef} />
+  //   </main>
+  // );
+
   return (
     <main>
-      <Input type="text" ref={inputRef} />
+      <Form>
+        <Input id="name" label="Name" type="text" />
+        <Input id="age" label="Age" type="number" />
+        <p>
+          <Button>Save</Button>
+        </p>
+      </Form>
     </main>
   );
 }
