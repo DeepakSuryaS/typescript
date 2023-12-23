@@ -25,7 +25,7 @@ function App() {
     // with a name and age property
     // otherwise, the previous if statement would have returned
     console.log(data);
-    customForm.current?.clear();
+    customFormRef.current?.clear();
   };
   // return (
   //   <main>
@@ -59,7 +59,7 @@ function App() {
         <Input id="name" label="Name" type="text" />
         <Input id="age" label="Age" type="number" />
         <p>
-          <Button>Save</Button>
+          <Button el="button">Save</Button>
         </p>
       </Form>
     </main>
