@@ -1,7 +1,17 @@
-import { ReactNode, useEffect, useState } from "react";
+import { type ReactNode, useEffect, useState } from "react";
+import { z } from "zod";
 import { get } from "./utils/http";
 import BlogPosts, { BlogPost } from "./components/BlogPosts";
 import fetchingImg from "./assets/data-fetching.png";
+
+const rawDataBlogPostSchema = z.object({
+  id: z.number(),
+  body: z.string(),
+  title: z.string(),
+  userId: z.number(),
+});
+
+const expectedResponseDataSchema = z.array(rawDataBlogPostSchema);
 
 type RawDataBlogPost = {
   id: number;
@@ -15,17 +25,32 @@ function App() {
 
   useEffect(() => {
     async function fetchPosts() {
-      const data = (await get(
-        "https://jsonplaceholder.typicode.com/posts"
-      )) as RawDataBlogPost[];
+      try {
+        const data = await get("https://jsonplaceholder.typicode.com/posts");
+        // )) as RawDataBlogPost[]; // this is not needed since Zod takes care of it and TypeScript would hence know that parsedData will be an array
 
-      const blogPosts: BlogPost[] = data.map((post) => ({
-        id: post.id,
-        text: post.body,
-        title: post.title,
-      }));
+        const parsedData = expectedResponseDataSchema.parse(data);
 
-      setFetchedPosts(blogPosts);
+        // const blogPosts: BlogPost[] = data.map((post) => ({
+        //   id: post.id,
+        //   text: post.body,
+        //   title: post.title,
+        // }));
+
+        const blogPosts: BlogPost[] = parsedData.map((rawPost) => {
+          return {
+            id: rawPost.id,
+            title: rawPost.title,
+            text: rawPost.body,
+          };
+        });
+
+        setFetchedPosts(blogPosts);
+      } catch (error) {
+        if (error instanceof Error) {
+          console.error(error.message);
+        }
+      }
     }
 
     fetchPosts();
